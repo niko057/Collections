@@ -13,7 +13,7 @@ namespace Collections
             list.Add(27);
             list.Remove(27);
             list.RemoveAt(1);
-            list.TrimToSize();
+            //list.TrimToSize();
             //list.AddRange(new object[] { 0, 5 });
            
 

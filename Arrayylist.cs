@@ -51,29 +51,33 @@ namespace Collections
 
         public void Remove(object item)
         {
-            for (int i = 0; i < count; i++)
+            int index = Array.IndexOf(items, item);
+            if (index >= 0)
             {
-                if (items[i].Equals(item))
-                {
-                    RemoveAt(i);
-                    return;
-                }
+                RemoveAt(index);
+            }
+            else
+            {
+                Console.WriteLine("Duzgun element yoxdu.");
             }
         }
 
+
         public void RemoveAt(int index)
         {
-            if (index < 0 || index >= count)
+            if (index >= 0 && index < count)
             {
-                throw new IndexOutOfRangeException();
+                for (int i = index; i < count - 1; i++)
+                {
+                    items[i] = items[i + 1];
+                }
+                items[count - 1] = null; // Son öğeyi null yaparak referansı kaldır
+                count--;
             }
-
-            for (int i = index; i < count - 1; i++)
+            else
             {
-                items[i] = items[i + 1];
+                Console.WriteLine("Bele index yoxdu.");
             }
-
-            count--;
         }
 
         public void TrimToSize()
@@ -117,8 +121,8 @@ namespace Collections
         {
             foreach (object element in items)
             {
-                Console.WriteLine("Daxil etdiyin elementler:");
-                Console.WriteLine(element);
+                Console.WriteLine("Daxil etdiyin elementler:"+element);
+               
             }
         }
     }
